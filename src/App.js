@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import LoginForm from "../auth/AuthProvider";
+import { Container, Typography } from '@mui/material';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container component="main" maxWidth="sm" style={{ marginTop: '50px' }}>
+      {!isLoggedIn ? (
+        // Kullanıcı giriş yapmadıysa LoginForm bileşenini göster
+        <LoginForm setIsLoggedIn={setIsLoggedIn} />
+      ) : (
+        // Kullanıcı giriş yaptıysa hoş geldiniz mesajını göster
+        <Typography variant="h4" component="h1" align="center">
+          Hoş Geldiniz!
+        </Typography>
+      )}
+    </Container>
   );
 }
 
 export default App;
+
