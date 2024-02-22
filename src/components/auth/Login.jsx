@@ -1,6 +1,6 @@
 
 import React from 'react';
-import LoginForm from "../auth/AuthProvider";
+import LoginForm from "../../components/auth/AuthProvider";
 import { Container, Box } from '@mui/material';
 
 function LoginPage({ setIsLoggedIn }) {

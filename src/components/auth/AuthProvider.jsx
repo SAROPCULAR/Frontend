@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import { Container, Box, Paper, Typography, Alert, TextField, Button } from '@mui/material';
 
 function LoginForm({ setIsLoggedIn }) {
-  const [username, setUsername] = useState(''); // 'username' yerine 'email' kullanımı
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Formun varsayılan gönderme işlemini engelleyin
-    setError(''); // Hata durumunu sıfırlayın
+    event.preventDefault();
+    setError('');
 
     try {
       const response = await axios.post('https://localhost:8080/auth/login', {
@@ -17,17 +17,13 @@ function LoginForm({ setIsLoggedIn }) {
         password,
       });
 
-      // API yanıtının durumunu kontrol et
       if (response.status === 200) {
-        // API'dan gelen bilgiler ile girilen bilgilerin uyumunu kontrol et (Örnek)
-        // Gerçek bir uygulamada, bu kontrol genellikle sunucu tarafında yapılır
         if (response.data.email === email && response.data.password === password) {
-          setIsLoggedIn(true); // Kullanıcı giriş durumunu güncelle
+          setIsLoggedIn(true);
         } else {
           setError('Giriş başarısız. Lütfen bilgilerinizi kontrol edin ve tekrar deneyin.');
         }
       } else {
-        // Başka bir HTTP durum kodu döndüğünde hata mesajı göster
         setError(`Giriş başarısız. Sunucu hatası: ${response.status}`);
       }
     } catch (err) {
@@ -35,6 +31,7 @@ function LoginForm({ setIsLoggedIn }) {
       console.error('Giriş hatası:', err);
     }
   };
+
   return (
     <Container component="main" maxWidth="xs">
       <Box
@@ -63,13 +60,13 @@ function LoginForm({ setIsLoggedIn }) {
               margin="normal"
               required
               fullWidth
-              id="username"
-              label="Kullanıcı Adı"
-              name="username"
-              autoComplete="username"
+              id="email"
+              label="E-posta Adresi"
+              name="email"
+              autoComplete="email"
               autoFocus
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
 
             <TextField

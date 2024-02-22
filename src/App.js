@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import LoginForm from "../auth/AuthProvider";
+import LoginForm from "../../Frontend/src/components/auth/AuthProvider";
 import { Container, Typography } from '@mui/material';
 
 function App() {
