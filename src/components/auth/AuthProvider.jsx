@@ -14,7 +14,7 @@ function LoginForm({ setIsLoggedIn }) {
     try {
       const response = await axios.post('https://localhost:8080/auth/login', {
         email,
-        password,
+        password, // token süresi dolduğunda frontende de çıkartmam gerekir mi ?
       });
 
       if (response.status === 200) {
